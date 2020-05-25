@@ -1,5 +1,6 @@
 {
-  "private": false,
+  "version": "0.1.0-alpha.3"
+  "private": true,
   "workspaces": [
     "reanimated-arc",
     "example"
