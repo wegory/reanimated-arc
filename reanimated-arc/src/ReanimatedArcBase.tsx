@@ -5,7 +5,7 @@
 
 import * as React from 'react';
 import {View, ViewStyle, StyleProp, Platform} from 'react-native';
-import {Svg, Path, G} from 'react-native-svg';
+import {Svg, Path, G, LinearGradient, Stop} from 'react-native-svg';
 import Reanimated from 'react-native-reanimated';
 
 const {
@@ -160,14 +160,16 @@ export default class AnimatedArc extends React.PureComponent<Props> {
                 {translateX: offsetAndroid},
               ],
             }}>
-            <AnimatedPath
-              d={this.circlePath}
-              stroke={color}
-              strokeWidth={width}
-              strokeLinecap={lineCap}
-              fill="transparent"
-              transform={`translate(${-pivot} ${-pivot})`}
-            />
+                  <LinearGradient id="grad-1" x1="80%" y1="0%" x2="10%" y2="100%">
+                    <Stop offset="15%" stopColor="#7401DF" />
+                    <Stop offset="75%" stopColor="#FE642E" />
+                    <Stop offset="90%" stopColor="#F7BE81" />
+                  </LinearGradient>
+                  <LinearGradient id="grad-2" x1="80%" y1="0%" x2="10%" y2="100%">
+                    <Stop offset="15%" stopColor="#7401DF" />
+                    <Stop offset="75%" stopColor="#FE642E" />
+                  </LinearGradient>
+            <AnimatedPath d={this.circlePath} stroke={color === "orange" ? "url(#grad-1)" : color === "yellow"? "url(#grad-2)" : color } strokeWidth={width} strokeLinecap={lineCap} fill="transparent" transform={`translate(${-pivot} ${-pivot})`}/>
           </AnimatedG>
         </Svg>
       </View>
